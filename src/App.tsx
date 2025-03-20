@@ -121,7 +121,7 @@ const App: React.FC = () => {
     <Layout style={{ minHeight: '100vh' }}>
       <Header style={{ display: 'flex', alignItems: 'center' }}>
         <div className="logo-container">
-          <span className="grab-logo">Grab</span>
+          <span className="my-logo">My</span>
           <div className="console-container">
             <div className="console-text">
               <SafeTypeIt
@@ -199,7 +199,18 @@ const App: React.FC = () => {
               borderRadius: borderRadiusLG,
             }}
           >
-            <h1 className="text-2xl font-bold mb-5">Welcome to Grab Console!</h1>
+            <h1 className="text-2xl font-bold mb-5">Welcome to My Console!</h1>
+            <Button
+              type="default"
+              htmlType="button"
+              icon={<ReloadOutlined />}
+              onClick={resetAnimation}
+              className="mt-5 mb-5"
+            >
+              Restart All Animations
+            </Button>
+            <br />
+            <br />
             <p className="mb-3">This layout follows the Ant Design header-sidebar structure.</p>
             
             <Divider orientation="left">TypeIt Library Tests</Divider>
