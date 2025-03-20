@@ -9,9 +9,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "antd": "^4.19.5",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "antd": "^5.24.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "typeit-react": "2.6.4"
   },
   "devDependencies": {
     "@types/node": "^17.0.24",

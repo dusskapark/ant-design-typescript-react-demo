@@ -2,30 +2,20 @@ import react from "@vitejs/plugin-react";
 import * as path from "path";
 import { resolve } from "path";
 import { defineConfig } from "vite";
-import vitePluginImp from "vite-plugin-imp";
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
       react(),
-      vitePluginImp({
-          libList: [
-              {
-                  libName: "antd",
-                  style: (name) => {
-                      if (name === "col" || name === "row") {
-                          return "antd/lib/style/index.less";
-                      }
-                      return `antd/es/${name}/style/index.less`;
-                  },
-              },
-          ],
-      }),
   ],
   css: {
       preprocessorOptions: {
           less: {
               javascriptEnabled: true,
+              modifyVars: {
+                // Ant Design 5 테마 변수 재정의
+                'primary-color': '#725ac1ff',  // slate-blue 색상으로 기본 테마 변경
+              },
           },
       },
   },
