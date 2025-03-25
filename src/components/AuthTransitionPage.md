@@ -1,109 +1,72 @@
 # AuthTransitionPage Component
 
-## Overview
-`AuthTransitionPage` is a React component that provides visual feedback to users during authentication processes. It displays each stage of the authentication flow (preparing, in progress, completed) with animations, clearly communicating success or error states to improve user experience.
+## Design Overview
+This component demonstrates an intuitive authentication flow with visual feedback for users. It was designed as a sample to showcase how a well-crafted authentication experience should look and function.
 
-## Purpose
-- Provides real-time visual feedback during authentication processes
-- Reduces perceived waiting time through engaging animations and progress indicators
-- Delivers clear error messages and retry options when authentication fails
-- Guides users to next steps after successful authentication
+## Design Goals
+- Replace generic loading spinners with an engaging visual journey
+- Communicate progress clearly to reduce perceived wait time
+- Provide appropriate feedback for both success and error states
+- Maintain consistent design language with Ant Design system
 
-## Key Features
-- Stage-based animations (loading, in-progress, success/error)
-- Visual progress tracking (Steps component)
-- Error state handling with appropriate messaging
-- Manual redirection button (after successful authentication)
-- Timeout detection and notification
-- Retry option (when errors occur)
+## User Experience Flow
 
-## Props
+1. **Preparation Stage**
+   - User sees the motorcycle preparing for "delivery" (authentication)
+   - Simple message explains the system is getting ready
 
-| Property | Type | Default | Description |
-|----------|------|---------|-------------|
-| `titleOption` | number | 0 | Index of title option to display (0-4) |
-| `contentOption` | number | 0 | Index of content option to display |
-| `estimatedTime` | number | 10 | Estimated time in seconds for authentication completion |
-| `showError` | boolean | false | Whether to display error state |
-| `errorType` | string | "BAD_REQUEST" | Type of error (based on HTTP status codes) |
-| `onRetry` | function | undefined | Function to call when retry button is clicked |
-| `redirectUrl` | string | "#" | URL to redirect after successful authentication |
-| `showRefreshNotice` | boolean | undefined | Whether to show refresh notice if taking longer than expected |
+2. **Processing Stage**
+   - Animated motorcycle shows authentication in progress
+   - Progress indicator gives sense of time remaining
 
-## State Management
-- `countdown`: Tracks countdown timer for authentication completion
-- `currentProgress`: Calculates overall progress (0-100%)
-- `isSuccessAnimationComplete`: Tracks when success animation has finished
-- `showErrorContent`: Controls display of error content
-- `percent`: Tracks progress percentage for current step
+3. **Completion Stage**
+   - Success: Clear success animation with redirect option
+   - Error: Appropriate error visualization with retry option
 
-## Supported HTTP Error Types
+
+### Key Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| titleOption | number | 0 | Selects from predefined title variations, allowing for different messaging contexts. |
+| contentOption | number | 0 | Controls the descriptive text displayed during each authentication stage. |
+| estimatedTime | number | 10 | Defines the expected authentication duration in seconds. Drives animation speed and determines when to show refresh notice. |
+| showError | boolean | false | When true, displays the error state instead of the success flow. |
+| errorType | string | "BAD_REQUEST" | Determines which error messaging to display. Supports standard HTTP error codes. |
+| onRetry | function | undefined | Callback function that executes when the user clicks the retry button in error states. |
+| redirectUrl | string | "#" | The destination URL for both automatic redirection and the manual redirect button. |
+| showRefreshNotice | boolean | undefined | Controls whether to display a refresh notice when authentication takes longer than estimated. |
+| customErrorTitle | string | undefined | Optional parameter to override the default error title. |
+| customErrorMessage | string | undefined | Optional parameter to override the default error message. |
+
+### Supported HTTP Error Types
 
 | Error Type | Code | Title | Message |
 |------------|------|-------|---------|
-| BAD_REQUEST | 400 Bad Request | Invalid Request | The server cannot process the request due to a client error. |
-| UNAUTHORIZED | 401 Unauthorized | Authentication Required | Access is denied due to invalid credentials. |
-| FORBIDDEN | 403 Forbidden | Access Denied | You don't have permission to access this resource. |
-| NOT_FOUND | 404 Not Found | Resource Not Found | The requested resource could not be found on the server. |
-| TIMEOUT | 408 Request Timeout | Request Timeout | The server timed out waiting for the request to complete. |
+| BAD_REQUEST | 400 | Invalid Request | The server cannot process the request due to a client error. |
+| UNAUTHORIZED | 401 | Authentication Required | Access is denied due to invalid credentials. |
+| FORBIDDEN | 403 | Access Denied | You don't have permission to access this resource. |
+| NOT_FOUND | 404 | Resource Not Found | The requested resource could not be found on the server. |
+| TIMEOUT | 408 | Request Timeout | The server timed out waiting for the request to complete. |
+| CONFLICT | 409 | Request Conflict | The request could not be completed due to a conflict with the resource. |
+| SERVER_ERROR | 500 | Server Error | An unexpected error occurred on the server. Please try again later. |
 
-## Authentication Process Stages
+## Technical Information
 
-1. **Preparing**
-   - Animation: Motorcycle preparing for delivery
-   - Status: Preparing authentication request
-   - Message: "Preparing your authentication request. This won't take long."
+### State Management
+- Tracks countdown timer, progress percentage, animation completion
+- Manages error content display and refresh notice visibility
 
-2. **On the way**
-   - Animation: Motorcycle in motion
-   - Status: Processing authentication request
-   - Message: "Your authentication is on the way. Please wait while we process your credentials."
-   - Progress indicator: Automatically increases from 0-100%
+### Dependencies
+- React
+- Ant Design (Typography, Button, Alert, Steps, etc.)
+- LottieFiles Player (@lottiefiles/react-lottie-player)
+- Animation JSON files (located in the assets/animation directory)
+  - Required files: motorcycle.json, success.json, error.json, timeout.json
 
-3. **Delivered**
-   - Success scenario:
-     - Animation: Success animation
-     - Message: "Authentication delivered successfully! You'll be redirected shortly. If you are not redirected automatically, please click the button below."
-     - Manual redirection button displayed
-
-   - Error scenario:
-     - Animation: Error animation (generic error or special timeout animation)
-     - Error code, title, and message displayed
-     - Retry button displayed
-
-## State Transition Logic
-
-1. **Success Scenario**:
-   - Preparing → On the way → Delivered (success)
-   - Progress indicator at each stage
-   - Automatic or manual redirection after completion
-
-2. **Error Scenario**:
-   - Preparing (displayed for 2 seconds) → On the way (where error occurs)
-   - Progress stops and error animation/message is displayed
-   - Retry button available to restart the process
-
-3. **Delay Handling**:
-   - If authentication exceeds `estimatedTime`
-   - "Still Waiting?" notification is shown when `showRefreshNotice` is active
-   - Refresh option provided to users
-
-## Styling
-- Class-based styling (defined in `components.less` file)
-- Styled animation containers, progress indicators, buttons
-- Responsive layout and animation effects
-- Bottom sheet design for mobile-friendly UI
-
-## Usage Examples
+## Additional Usage Examples
 
 ```tsx
-// Basic success scenario
-<AuthTransitionPage
-  titleOption={0}
-  estimatedTime={10}
-  redirectUrl="/dashboard"
-/>
-
 // Error scenario (401 unauthorized)
 <AuthTransitionPage
   titleOption={0}
@@ -112,23 +75,27 @@
   onRetry={() => handleRetry()}
   showRefreshNotice={true}
 />
+
+// Custom error messaging
+<AuthTransitionPage
+  titleOption={0}
+  showError={true}
+  errorType="SERVER_ERROR"
+  customErrorTitle="System Temporarily Unavailable"
+  customErrorMessage="We're experiencing technical difficulties. Please try again in a few minutes."
+  onRetry={() => handleRetry()}
+/>
+
+// With refresh notice for long-running authentication
+<AuthTransitionPage
+  titleOption={0}
+  estimatedTime={30}
+  redirectUrl="/dashboard"
+  showRefreshNotice={true}
+/>
 ```
 
 ## Important Notes
-
-- This component only handles visual representation of the authentication process. The actual authentication logic must be implemented separately.
-- Error handling and retry logic must be provided externally through the `onRetry` prop.
-- Animation assets (JSON files) are required: motorcycle.json, success.json, error.json, timeout.json
-
-## Dependencies
-
-- React
-- Ant Design (Typography, Button, Alert, Steps, etc.)
-- LottieFiles Player (@lottiefiles/react-lottie-player)
-- Animation JSON files
-
-## Special Handling
-
-- Timeout errors: Uses special animation distinct from regular errors
-- Delayed responses: Refresh notice displayed (optional)
-- Manual redirection option provided after success animation completes 
+- This component only handles visual representation of the authentication process
+- The actual authentication logic must be implemented separately
+- For best performance, consider preloading animation files in production environments
