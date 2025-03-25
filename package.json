@@ -9,9 +9,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@lottiefiles/react-lottie-player": "^3.6.0",
     "antd": "^5.24.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "6.18.0",
     "typeit-react": "2.6.4"
   },
   "devDependencies": {

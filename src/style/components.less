@@ -1,3 +1,5 @@
+@import 'variables.less';
+
 /* Logo 스타일 */
 .logo-container {
   display: flex;
@@ -51,4 +53,192 @@
 .animation-container {
   min-height: 2rem;
   margin-bottom: 1rem;
+}
+
+/* AuthTransitionPage 스타일 */
+.auth-transition-page {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 24px;
+  background-color: #fff;
+  overflow: hidden;
+}
+
+.bottom-sheet {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1);
+  padding: 24px;
+  width: 100%;
+  height: 85vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  overflow-y: auto;
+  z-index: 1000;
+  transform: translateY(0);
+  animation: slideUp 0.5s ease-out;
+}
+
+.back-to-settings-button {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  z-index: 1010;
+}
+
+.animation-container-auth {
+  height: auto;
+  width: 100%;
+  max-width: 592px;
+  max-height: 220px;
+  margin: 0 auto;
+}
+
+.animation-player {
+  height: 220px;
+}
+
+.auth-title {
+  width: 100%;
+  margin: 24px 0 16px;
+  font-weight: bold;
+}
+
+.auth-paragraph {
+  font-size: 16px;
+  width: 100%;
+  max-width: 592px;
+  margin: 16px auto 0;
+  white-space: normal;
+  word-wrap: break-word;
+  text-align: center;
+}
+
+.auth-error-text {
+  display: block;
+  margin-bottom: 8px;
+  color: @auth-error-text-color;
+}
+
+.auth-error-message {
+  display: block;
+  color: @auth-error-text-color;
+}
+
+.auth-button {
+  margin-top: 32px;
+}
+
+.auth-retry-button {
+  margin-top: 24px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  height: 48px;
+  padding: 0 32px;
+  gap: 8px;
+  border-color: @auth-error-border-color;
+  color: @auth-error-text-color;
+}
+
+.auth-refresh-notice {
+  width: 100%;
+  max-width: 592px;
+  margin: 24px auto 0;
+}
+
+.auth-refresh-notice .ant-alert {
+  text-align: left;
+  width: 100%;
+}
+
+.steps-container {
+  width: 100%;
+  height: 80px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin: 8px 0 16px;
+}
+
+.steps-wrapper {
+  width: 592px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+}
+
+.auth-steps {
+  width: 592px !important; 
+  min-width: 592px !important;
+  margin: 0 auto;
+}
+
+.auth-steps .ant-steps-item {
+  flex: 1;
+  min-width: 0;
+}
+
+.auth-steps .ant-steps-item-container {
+  width: 100%;
+}
+
+/* Force specific widths for steps */
+.ant-steps-horizontal {
+  width: 592px !important;
+  min-width: 592px !important;
+  display: flex !important;
+}
+
+.auth-steps .ant-steps-item-tail {
+  height: 2px;
+  border-top: 2px solid #e8e8e8;
+  margin: 0;
+  padding: 0;
+  width: 100% !important;
+}
+
+.auth-steps .ant-steps-item-process .ant-steps-item-tail::after,
+.auth-steps .ant-steps-item-finish .ant-steps-item-tail::after {
+  height: 2px;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* AuthPage 스타일 */
+.auth-page-preview {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1050;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+  background: #f0f2f5;
 }
