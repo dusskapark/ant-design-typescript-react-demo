@@ -1,9 +1,11 @@
 import React from "react";
-import { Player } from "@lottiefiles/react-lottie-player";
-import motorcycleAnimation from "../../assets/animation/motorcycle.json";
-import successAnimation from "../../assets/animation/success.json";
-import errorAnimation from "../../assets/animation/error.json";
-import timeoutAnimation from "../../assets/animation/timeout.json";
+import { LottiePlayer } from "../animations";
+import {
+  MotorcycleAnimation,
+  SuccessAnimation,
+  ErrorAnimation,
+  TimeoutAnimation
+} from "../animations";
 import "../../style/components.less";
 
 export type AnimationType = "motorcycle" | "success" | "error" | "timeout";
@@ -29,21 +31,21 @@ const AnimationPlayer: React.FC<AnimationPlayerProps> = ({
   const getAnimationSource = () => {
     switch (type) {
       case "motorcycle":
-        return motorcycleAnimation;
+        return MotorcycleAnimation;
       case "success":
-        return successAnimation;
+        return SuccessAnimation;
       case "error":
-        return errorAnimation;
+        return ErrorAnimation;
       case "timeout":
-        return timeoutAnimation;
+        return TimeoutAnimation;
       default:
-        return motorcycleAnimation;
+        return MotorcycleAnimation;
     }
   };
 
   return (
     <div className="animation-container-auth">
-      <Player
+      <LottiePlayer
         autoplay={autoplay}
         loop={loop}
         src={getAnimationSource()}
