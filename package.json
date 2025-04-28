@@ -13,6 +13,7 @@
     "antd": "^5.24.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-gradient-animation": "^1.0.7",
     "react-router-dom": "^6.4.0",
     "typeit-react": "2.6.4"
   },

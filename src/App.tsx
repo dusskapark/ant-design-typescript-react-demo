@@ -3,6 +3,8 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import MainPage from "./pages/MainPage";
 import AuthPage from "./pages/AuthPage";
 import TypeItPage from "./pages/TypeItPage";
+import LoginSuccessPage from "./pages/LoginSuccessPage";
+import LoginPageContainer from "./pages/LoginPageContainer";
 import MainLayout from "./components/MainLayout";
 import "./style/index.less";
 
@@ -43,6 +45,8 @@ const App: React.FC = () => {
             </MainLayout>
           } 
         />
+        <Route path="/login" element={<LoginPageContainer />} />
+        <Route path="/login-success" element={<LoginSuccessPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>

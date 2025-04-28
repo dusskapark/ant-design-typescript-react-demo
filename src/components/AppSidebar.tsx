@@ -14,6 +14,7 @@ const items: MenuProps["items"] = [
     label: "Home",
     children: [
       { key: "typeit", label: "TypeIt" },
+      { key: "login", label: "Login Page" },
     ],
   },
   {
@@ -50,6 +51,9 @@ const AppSidebar: React.FC<AppSidebarProps> = ({ defaultOpenKeys = ["sub1"] }) =
         break;
       case "auth-transition":
         navigate("/auth?mode=settings");
+        break;
+      case "login":
+        navigate("/login");
         break;
     }
   };

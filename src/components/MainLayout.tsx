@@ -24,6 +24,9 @@ const MainLayout: React.FC<MainLayoutProps> = ({
   // Check if we're in Auth Preview mode
   const isAuthPreviewMode = location.pathname === "/auth" && location.search.includes("mode=preview");
   
+  // Check if the current page is the login page
+  const isLoginPage = location.pathname === '/login';
+  
   // Public method to reset animations
   const resetAnimation = () => {
     console.log('MainLayout.resetAnimation called');
@@ -54,6 +57,20 @@ const MainLayout: React.FC<MainLayoutProps> = ({
     return <>{renderChildrenWithProps()}</>;
   }
 
+  // Define base content style
+  const baseContentStyle: React.CSSProperties = {
+    background: token.colorBgContainer,
+    borderRadius: token.borderRadiusLG,
+    padding: 24,
+    position: "relative",
+    overflow: "auto"
+  };
+
+  // Adjust style for login page (no padding, transparent background)
+  const contentStyle = isLoginPage
+    ? { ...baseContentStyle, padding: 0, background: 'transparent' }
+    : baseContentStyle;
+
   return (
     <Layout style={{ minHeight: "100vh" }}>
       <AppHeader resetKey={resetKey} />
@@ -66,13 +83,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({
           />
           <Content
             className="content-container"
-            style={{
-              background: token.colorBgContainer,
-              borderRadius: token.borderRadiusLG,
-              padding: 24,
-              position: "relative",
-              overflow: "auto"
-            }}
+            style={contentStyle}
           >
             {renderChildrenWithProps()}
           </Content>

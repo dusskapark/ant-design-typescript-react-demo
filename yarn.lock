@@ -1859,6 +1859,11 @@ react-dom@>=17.0.0, react-dom@^18.2.0:
     loose-envify "^1.1.0"
     scheduler "^0.23.2"
 
+react-gradient-animation@^1.0.7:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/react-gradient-animation/-/react-gradient-animation-1.0.7.tgz#5feaf618e995c7f164f953c4b89602f168e011d2"
+  integrity sha512-FhtfJyfGhhAryCagahfGSpt9glccMNuQU+DlQJPWjsgDhKCCU5Nv2uEwXBSVEFEGiGfHJ+KsqyeGTkQjz8bl/A==
+
 react-is@^18.2.0:
   version "18.3.1"
   resolved "https://registry.npmjs.org/react-is/-/react-is-18.3.1.tgz"
