@@ -190,6 +190,26 @@ const TypeItPage: React.FC<TypeItPageProps> = ({ resetKey: externalResetKey, res
                 </div>
               </div>
             </Card>
+
+            <Card title="Figma MCP Magic Demo" className="mt-4">
+              <div className="text-center">
+                <p className="mb-4 text-gray-600">
+                  Experience a fullscreen typewriter animation showcasing Figma MCP magic tricks discovery.
+                </p>
+                <Button
+                  type="primary"
+                  size="large"
+                  onClick={() => window.open('/figma-mcp-magic', '_blank')}
+                  className="bg-gradient-to-r from-purple-500 to-blue-500 border-0 text-white font-semibold px-8 py-2 h-auto"
+                  style={{ minHeight: '48px' }}
+                >
+                  🎬 Launch Figma MCP Magic Demo
+                </Button>
+                <p className="mt-2 text-xs text-gray-400">
+                  Press ESC to exit fullscreen mode
+                </p>
+              </div>
+            </Card>
           </Space>
         </>
       ),

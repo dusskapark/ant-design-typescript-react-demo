@@ -5,6 +5,7 @@ import AuthPage from "./pages/AuthPage";
 import TypeItPage from "./pages/TypeItPage";
 import LoginSuccessPage from "./pages/LoginSuccessPage";
 import LoginPageContainer from "./pages/LoginPageContainer";
+import FigmaMCPMagicPage from "./pages/FigmaMCPMagicPage";
 import MainLayout from "./components/MainLayout";
 import "./style/index.less";
 
@@ -47,6 +48,7 @@ const App: React.FC = () => {
         />
         <Route path="/login" element={<LoginPageContainer />} />
         <Route path="/login-success" element={<LoginSuccessPage />} />
+        <Route path="/figma-mcp-magic" element={<FigmaMCPMagicPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
