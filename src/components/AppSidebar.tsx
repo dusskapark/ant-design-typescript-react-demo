@@ -1,6 +1,6 @@
 import React from "react";
 import { Menu, Layout, theme } from "antd";
-import { HomeOutlined, SwapOutlined } from "@ant-design/icons";
+import { HomeOutlined, SwapOutlined, CodeOutlined } from "@ant-design/icons";
 import type { MenuProps } from "antd";
 import { useNavigate, useLocation } from "react-router-dom";
 
@@ -25,6 +25,14 @@ const items: MenuProps["items"] = [
       { key: "auth-transition", label: "Auth Transition" },
     ],
   },
+  {
+    key: "sub3",
+    icon: <CodeOutlined />,
+    label: "Monaco Editor",
+    children: [
+      { key: "monaco-hover-provider", label: "Custom Hover Provider" },
+    ],
+  },
 ];
 
 interface AppSidebarProps {
@@ -41,6 +49,7 @@ const AppSidebar: React.FC<AppSidebarProps> = ({ defaultOpenKeys = ["sub1"] }) =
     if (location.pathname === "/") return "typeit";
     if (location.pathname === "/auth") return "auth-transition";
     if (location.pathname === "/demo") return "auth-transition";
+    if (location.pathname === "/monaco-editor") return "monaco-hover-provider";
     return "typeit";
   };
 
@@ -54,6 +63,9 @@ const AppSidebar: React.FC<AppSidebarProps> = ({ defaultOpenKeys = ["sub1"] }) =
         break;
       case "login":
         navigate("/login");
+        break;
+      case "monaco-hover-provider":
+        navigate("/monaco-editor");
         break;
     }
   };

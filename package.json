@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@lottiefiles/react-lottie-player": "^3.6.0",
+    "@monaco-editor/react": "^4.7.0",
     "antd": "^5.24.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

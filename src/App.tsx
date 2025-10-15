@@ -6,6 +6,7 @@ import TypeItPage from "./pages/TypeItPage";
 import LoginSuccessPage from "./pages/LoginSuccessPage";
 import LoginPageContainer from "./pages/LoginPageContainer";
 import FigmaMCPMagicPage from "./pages/FigmaMCPMagicPage";
+import MonacoEditorPage from "./pages/MonacoEditorPage";
 import MainLayout from "./components/MainLayout";
 import "./style/index.less";
 
@@ -43,6 +44,17 @@ const App: React.FC = () => {
               defaultOpenKeys={["sub2"]}
             >
               <MainPage />
+            </MainLayout>
+          } 
+        />
+        <Route 
+          path="/monaco-editor" 
+          element={
+            <MainLayout 
+              breadcrumbItems={[{ title: "Monaco Editor" }, { title: "Custom Hover Provider" }]}
+              defaultOpenKeys={["sub3"]}
+            >
+              <MonacoEditorPage />
             </MainLayout>
           } 
         />
